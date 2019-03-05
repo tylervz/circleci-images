@@ -54,10 +54,19 @@ if __name__ == '__main__':
             help='get latest version of desired tool')
     args = parser.parse_args()
     if args.get == 'ant':
-        print(get_latest_version(ANT_URL, ANT_VERSION_PATTERN))
+        # Ant 1.10 requires JDK 8, so we need to use Ant 1.9.x
+        # https://stackoverflow.com/a/49304867/8049180
+        print("1.9.13")
+        # print(get_latest_version(ANT_URL, ANT_VERSION_PATTERN))
     if args.get == 'gradle':
-        print(get_latest_version(GRADLE_URL, GRADLE_VERSION_PATTERN))
+        # Gradle 5.x requires JDK 8, so we need to use Gradle 4.x
+        print("4.10.2")
+        # print(get_latest_version(GRADLE_URL, GRADLE_VERSION_PATTERN))
     if args.get == 'maven':
         print(get_latest_version(MAVEN_URL, MAVEN_VERSION_PATTERN))
     if args.get == 'sbt':
-        print(get_sbt_url(SBT_URL, SBT_URL_PATTERN))
+        # TODO: figure out what older versions of sbt work with JDK 7. Neither 1.1.6 nor 1.0.4 nor 1.0.0 worked.
+        # https://www.scala-sbt.org/1.0/docs/sbt-1.1-Release-Notes.html 
+        # https://www.scala-sbt.org/download.html
+        print("https://piccolo.link/sbt-0.13.15.tgz")
+        # print(get_sbt_url(SBT_URL, SBT_URL_PATTERN))
